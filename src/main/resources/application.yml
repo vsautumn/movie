@@ -1,0 +1,66 @@
+server:
+    port: 8080
+    compression.enabled: true
+    compression.min-response-size: 1024
+    compression.mime-types: application/json,application/xml,text/html,text/xml,text/plain
+security:
+    filter-order: 5
+    basic:
+        enabled: false
+spring:
+    application:
+        name: movie
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/movie?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true&zeroDateTimeBehavior=convertToNull
+        username: root
+        password: 123456789
+        tomcat.initial-size: 5
+        tomcat.max-wait: 30000
+        tomcat.max-active: 200
+        tomcat.max-idle: 15
+        tomcat.min-idle: 5
+        testOnBorrow: true
+        validation-query: SELECT 1;
+    http:
+        multipart:
+            max-file-size: 100MB
+            max-request-size: 100MB
+    redis:
+        database: 0
+        host: localhost
+        password:
+        port: 6379
+        timeout: 5000
+        pool.max-idle: 8
+        pool.min-idle: 0
+        pool.max-active: 8
+        pool.max-wait: -1
+
+liquibase:
+    changeLog: "classpath:db/changelog/master.xml"
+
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true
+        default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
+pagehelper:
+    helperDialect: mysql
+mapper:
+    mappers:
+    - com.shiliu.movie.TKMapper
+    not-empty: false
+    identity: mysql
+    use-simple-type: true
+    enum-as-simple-type: true
+userTokenConfig:
+    tokenValidateKey: eWRAajAxOB==
+    tokenExpireTime: 30
+    md5Pass: shiliu
+endpoints:
+    sensitive: false
+management:
+    security:
+        enabled: false
+
+#logging.level.com.samples.tms.base.vehicle.mapper.VehicleMapper: DEBUG

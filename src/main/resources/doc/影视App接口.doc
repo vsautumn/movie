@@ -1,0 +1,3456 @@
+
+        <html xmlns:v="urn:schemas-microsoft-com:vml"
+        xmlns:o="urn:schemas-microsoft-com:office:office"
+        xmlns:w="urn:schemas-microsoft-com:office:word"
+        xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta http-equiv=Content-Type content="text/html;  
+        charset=utf-8">
+        <style type="text/css">
+            table  
+            {  
+                border-collapse: collapse;
+                border: none;  
+                width: 100%;  
+            }  
+            td  
+            {  
+                border: solid #CCC 1px;  
+            }  
+            .codestyle{
+                word-break: break-all;
+                background:silver;mso-highlight:silver;
+            }
+        </style>
+        <meta name=ProgId content=Word.Document>
+        <meta name=Generator content="Microsoft Word 11">
+        <meta name=Originator content="Microsoft Word 11">
+        <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+        <body><h1>1、1.1 注册</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户注册接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/register</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">confirm_password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>确认密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">sms_code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+<tr>
+<td style="text-align: left;">invitation_code</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>邀请码（非必填）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "mobile": "13656227964",
+        "name": "13656227964",
+        "token": "I219675010503142",
+        "created_at": "2019-02-19 09:11:41",
+        "id": "1"
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">string</td>
+<td>用户手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>status 1成功获取数据，0获取数据失败</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>2、1.2 验证码登录</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>验证码登录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/smsCodeLogin</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobie</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">sms_code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "id": 1,
+        "name": "13656227964",
+        "token": "I219675010503142",
+        "mobile": "13656227964",
+        "property": 0,
+        "points": 0,
+        "watch_ticket_num": 0,
+        "download_num": 0,
+        "avatar_url": null,
+        "is_continuous": 0,
+        "is_mobile_network": 0,
+        "is_default_resolution": 0,
+        "share_num": 0,
+        "invitation_num": 0,
+        "expire": null,
+        "time_expire": null,
+        "sms_code": "0",
+        "sex": 0,
+        "age": "0",
+        "role": 1,
+        "created_at": "2019-02-19 09:11:41",
+        "updated_at": null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>status 1成功获取数据，0获取数据失败</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>3、1.3 修改密码</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>修改密码</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/user/modifyPassword</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">confirm_password</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>确认密码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong>
+status 1成功获取数据，0获取数据失败</p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>4、1.4 签到</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>签到接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/daySignIn</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>status 1成功获取数据，0获取数据失败</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>5、1.5 卡券包</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>卡券包(coupon_type:0:全部1:观影券2:下载券)接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.169.1.102:8040/api/movie/getCouponList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 6,
+                "user_id": 9,
+                "coupon_id": 1,
+                "status": 1,
+                "num": 1,
+                "description": "推荐获取",
+                "type": 2,
+                "created_at": "2019-02-19 12:11:50",
+                "updated_at": null
+            },
+            {
+                "id": 7,
+                "user_id": 9,
+                "coupon_id": 1,
+                "status": 1,
+                "num": 1,
+                "description": "推荐获取",
+                "type": 2,
+                "created_at": "2019-02-19 12:11:50",
+                "updated_at": null
+            },
+            {
+                "id": 8,
+                "user_id": 9,
+                "coupon_id": 1,
+                "status": 1,
+                "num": 1,
+                "description": "推荐获取",
+                "type": 2,
+                "created_at": "2019-02-19 12:11:50",
+                "updated_at": null
+            },
+            {
+                "id": 9,
+                "user_id": 9,
+                "coupon_id": 1,
+                "status": 1,
+                "num": 1,
+                "description": "推荐获取",
+                "type": 2,
+                "created_at": "2019-02-19 12:11:50",
+                "updated_at": null
+            },
+            {
+                "id": 10,
+                "user_id": 9,
+                "coupon_id": 1,
+                "status": 1,
+                "num": 1,
+                "description": "推荐获取",
+                "type": 2,
+                "created_at": "2019-02-19 12:11:50",
+                "updated_at": null
+            }
+        ],
+        "first_page_url": "http://localhost:8060/api/movie/getCouponList?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8060/api/movie/getCouponList?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8060/api/movie/getCouponList",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 5,
+        "total": 5
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h1>6、1.6 兑换中心</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>兑换中心接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/exchangeTicketList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "num": 100,
+                "need_score": "20",
+                "period_type": 4,
+                "name": "观影券",
+                "coupon_id": 0,
+                "days": 0,
+                "expire_date": "2019-02-27 00:00:00",
+                "created_at": "2019-02-01 19:37:33",
+                "updated_at": null
+            }
+        ],
+        "first_page_url": "http://localhost:8060/api/movie/exchangeTicketList?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8060/api/movie/exchangeTicketList?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8060/api/movie/exchangeTicketList",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>7、1.7兑换券</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>兑换券接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/exchangeTicket</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">coupon_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>优惠券id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+           }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>8、1.8兑换卡券明细</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>兑换卡券明细接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/exchangeHistoryList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "user_id": 13,
+                "description": "每日签到",
+                "score": 10,
+                "symbol": "+",
+                "type": 1,
+                "created_at": "2019-02-20 03:22:56",
+                "updaetd_at": null
+            },
+            {
+                "id": 2,
+                "user_id": 13,
+                "description": "兑换观影券",
+                "score": 20,
+                "symbol": "-",
+                "type": 3,
+                "created_at": "2019-02-20 06:01:46",
+                "updaetd_at": null
+            }
+        ],
+        "first_page_url": "http://localhost:8060/api/movie/exchangeHistoryList?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8060/api/movie/exchangeHistoryList?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8060/api/movie/exchangeHistoryList",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 2,
+        "total": 2
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>9、1.9记录观影信息</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>记录观影信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/recordWatchMovie</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>影视名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_duration</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>影片时长</td>
+</tr>
+<tr>
+<td style="text-align: left;">watch_movie_time</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>观看进度</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+           }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>10、1.10观影记录列表</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>观影记录列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/watchHistoryList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">keyword</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>查询关键字</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 3,
+                "user_id": 13,
+                "movie_id": 1,
+                "movie_name": "无双",
+                "movie_duration": "1:30",
+                "watch_movie_date": "2019-02-20 07:23:47",
+                "watch_movie_time": "20:19:11",
+                "watch_movie_duration": null,
+                "created_at": "2019-02-20 07:23:47",
+                "updated_at": null
+            },
+            {
+                "id": 4,
+                "user_id": 13,
+                "movie_id": 2,
+                "movie_name": "无名之辈",
+                "movie_duration": "1:30",
+                "watch_movie_date": "2019-02-20 07:23:54",
+                "watch_movie_time": "20:19:11",
+                "watch_movie_duration": null,
+                "created_at": "2019-02-20 07:23:54",
+                "updated_at": null
+            }
+        ],
+        "first_page_url": "http://localhost:8060/api/movie/watchHistoryList?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8060/api/movie/watchHistoryList?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8060/api/movie/watchHistoryList",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 2,
+        "total": 2
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>11、1.11清除观看记录</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>清除观看记录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/clearWatchHistory</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">ids</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>观看记录id（格式：1，2）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>12、1.12 验证影片是否收藏过</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>验证影片是否收藏过(status 1:已收藏0:未收藏）接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/verifyCollectMovie</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>影视id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "status": 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>13、1.13收藏影视</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>收藏影视接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/collectMovie</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>影视id</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>影视名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">status</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>0:取消1:收藏</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>14、1.14收藏列表</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>收藏列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/collectionList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>1(首页个人中心收藏传次参数)</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "user_id": 13,
+                "movie_id": 1,
+                "movie_name": "无名之辈",
+                "cid": 1,
+                "created_at": "2019-02-20 07:54:44",
+                "updated_at": null
+            }
+        ],
+        "first_page_url": "http://localhost:8060/api/movie/collectionList?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8060/api/movie/collectionList?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8060/api/movie/collectionList",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>15、1.15清除收藏记录</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>清除收藏记录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/clearCollectionHistory</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">ids</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id（格式：1，2）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>16、1.16上传资源</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>上传资源接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/upload</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">file</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "file": "http://192.168.1.102:8040/storage/5becddf1d535a.jpg",
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>17、1.17是否记录视频缓存</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>是否记录视频缓存接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/verifyCacheMovie</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "status": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>18、1.18记录视频缓存</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>记录视频缓存接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/recordCacheMovie</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>影视名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "status": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>19、1.19缓存记录列表</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>缓存记录列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/cacheList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "user_id": 13,
+                "movie_id": 6,
+                "movie_name": "暗黑5",
+                "created_at": null,
+                "updated_at": null
+            }
+        ],
+        "first_page_url": "http://localhost:8060/api/movie/cacheList?page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://localhost:8060/api/movie/cacheList?page=1",
+        "next_page_url": null,
+        "path": "http://localhost:8060/api/movie/cacheList",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>20、1.20清除缓存记录</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>清除缓存记录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/clearCacheHistory</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">ids</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id（格式：1，2）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>21、1.21获取用户信息</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取用户信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/userInfo</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "id": 15,
+        "name": "18621801368",
+        "invitation_code": "I22301",
+        "token": "I223926299759276",
+        "mobile": "18621801368",
+        "property": 0,
+        "points": 20,
+        "watch_ticket_num": 9,
+        "download_num": 0,
+        "share_get_ticket_num": 0,
+        "watch_movie_time": 0,
+        "avatar_url": null,
+        "is_continuous": 0,
+        "is_mobile_network": 0,
+        "is_default_resolution": 0,
+        "share_num": 0,
+        "invitation_num": 0,
+        "expire": null,
+        "time_expire": null,
+        "sms_code": "0",
+        "sex": 0,
+        "age": "0",
+        "role": 1,
+        "is_sign": 1,
+        "is_login": 0,
+        "member_type": 1,
+        "created_at": "2019-02-23 11:30:30",
+        "updated_at": "2019-02-25 13:45:39"
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>22、1.22修改密码验证原手机号有效性</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>修改密码验证原手机号有效性接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/verifyMobile</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">sms_code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>验证码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>23、1.23修改用户信息</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>修改用户信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/modifyUserInfo</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>姓名</td>
+</tr>
+<tr>
+<td style="text-align: left;">avatar_url</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>头像</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "mobile": "13656227964",
+        "name": "hh",
+        "avatar_url": null,
+        "updated_at": "2019-02-25 17:26:15"
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>24、1.24修改手机号</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>修改手机号接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/modifyNewMobile</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">sms_code</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>25、1.25记录搜索关键字</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>记录搜索关键字接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.186.8.240:8089/api/movie/recordSearchKeyword</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>影视id</td>
+</tr>
+<tr>
+<td style="text-align: left;">keyword</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>关键字</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": []
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>26、1.26搜索历史记录根据cid获取前10资源</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>搜索历史记录根据cid获取前10资源接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.186.8.240:8089/api/management/getVideoByCid</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>资源分类id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": [
+        {
+            "id": 1,
+            "user_id": null,
+            "movie_id": 1,
+            "movie_name": "无双",
+            "cid": 1,
+            "search_keyword": "无双",
+            "search_times": 6,
+            "search_play_times": 2,
+            "created_at": "2019-02-20 10:49:38",
+            "updated_at": "2019-02-28 17:54:01"
+        }
+    ]
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>27、1.27 登录</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户登录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/login</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "id": 1,
+        "name": "hh",
+        "invitation_code": "I21940",
+        "token": "I219711054016742",
+        "mobile": "13656227964",
+        "property": "0",
+        "points": "0",
+        "watch_ticket_num": "0",
+        "download_num": "0",
+        "share_get_ticket_num": "5",
+        "watch_movie_time": "0",
+        "avatar_url": null,
+        "is_continuous": "0",
+        "is_mobile_network": "0",
+        "is_default_resolution": "0",
+        "share_num": "1",
+        "invitation_num": "1",
+        "expire": null,
+        "time_expire": null,
+        "sms_code": "0",
+        "sex": "0",
+        "age": "0",
+        "role": "1",
+        "is_sign": "0",
+        "is_login": "0",
+        "member_type": "1",
+        "created_at": "2019-02-19 10:11:45",
+        "updated_at": "2019-02-25 18:43:48"
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>28、1.28验证观影是否需要扣观影券</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>验证观影是否需要扣观影券接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.186.1.102:8040/api/movie/verifyWatchMovieStatus</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id</td>
+</tr>
+<tr>
+<td style="text-align: left;">status</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>确认扣券传1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "status": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>29、1.29 验证是否需要扣下载券</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>验证是否需要扣下载券接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.186.1.102:8040/api/movie/verifyDownLoadMovieStatus</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id</td>
+</tr>
+<tr>
+<td style="text-align: left;">status</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>确认扣券传1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "status": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>30、1.30记录观看视频完整次数</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>记录观看视频完整次数接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/recordWatchMovieTimes</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>影视id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>31、1.31是否签到过</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>是否签到过接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/verifySignInStatus</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "status": 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>32、1.32根据收藏记录获取分类列表</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>根据收藏记录获取分类列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/getCategoryByCollection</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": [
+        {
+            "id": 1,
+            "pid": 0,
+            "name": "地区",
+            "cover_url": "http://47.107.55.132:8089/uploads/20190304/cover/15516806025c7cc45a1580a.jpg",
+            "type": 0,
+            "status": 1,
+            "sort": 1,
+            "created_at": "2019-03-04 14:23:22",
+            "updated_at": "2019-03-04 14:23:22"
+        },
+        {
+            "id": 2,
+            "pid": 0,
+            "name": "类型",
+            "cover_url": null,
+            "type": 0,
+            "status": 1,
+            "sort": 1,
+            "created_at": "2019-02-27 15:27:44",
+            "updated_at": "2019-02-27 15:27:46"
+        }
+    ]
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>33、1.33登录弹出赠送的券</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>登录弹出赠送的券接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://192.168.1.102:8040/api/movie/loginPoppingTickets</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": [
+        {
+            "id": 60,
+            "user_id": 13,
+            "coupon_id": 0,
+            "watch_history_id": 0,
+            "movie_id": null,
+            "status": 1,
+            "symbol": "+",
+            "num": 1,
+            "description": "登录即送",
+            "change_event": null,
+            "type": 1,
+            "coupon_type": 1,
+            "expire_date": null,
+            "is_display": 0,
+            "created_at": "2019-03-05 13:00:40",
+            "updated_at": "2019-03-05 13:04:15"
+        },
+        {
+            "id": 59,
+            "user_id": 13,
+            "coupon_id": 0,
+            "watch_history_id": 0,
+            "movie_id": null,
+            "status": 1,
+            "symbol": "+",
+            "num": 1,
+            "description": "登录即送",
+            "change_event": null,
+            "type": 1,
+            "coupon_type": 1,
+            "expire_date": null,
+            "is_display": 0,
+            "created_at": "2019-03-05 13:00:40",
+            "updated_at": "2019-03-05 13:04:15"
+        },
+        {
+            "id": 58,
+            "user_id": 13,
+            "coupon_id": 0,
+            "watch_history_id": 0,
+            "movie_id": null,
+            "status": 1,
+            "symbol": "+",
+            "num": 1,
+            "description": "登录即送",
+            "change_event": null,
+            "type": 1,
+            "coupon_type": 1,
+            "expire_date": null,
+            "is_display": 0,
+            "created_at": "2019-03-05 13:00:40",
+            "updated_at": "2019-03-05 13:04:15"
+        }
+    ]
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>34、1.34发送验证码</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>发送验证码接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/send</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>手机号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "验证码已发送！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>35、1.35消息列表</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>消息列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/messageList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "total": 2,
+        "per_page": 10,
+        "current_page": 1,
+        "last_page": 1,
+        "next_page_url": null,
+        "prev_page_url": null,
+        "from": 1,
+        "to": 2,
+        "data": [
+            {
+                "id": 2,
+                "user_id": "15",
+                "msg": "今日签到",
+                "is_read": "1",
+                "created_at": "2019-03-07 10:54:29",
+                "updated_at": "2019-03-08 13:31:52"
+            },
+            {
+                "id": 3,
+                "user_id": "15",
+                "msg": "今日签到",
+                "is_read": "1",
+                "created_at": "2019-03-08 10:55:19",
+                "updated_at": "2019-03-08 13:31:52"
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>36、1.36banner列表</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>banner列表接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/bannerList</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">limit</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "total": 1,
+        "per_page": "1",
+        "current_page": 1,
+        "last_page": 1,
+        "next_page_url": null,
+        "prev_page_url": null,
+        "from": 1,
+        "to": 1,
+        "data": [
+            {
+                "id": 1,
+                "name": "推荐",
+                "url": "www.baidu.com",
+                "type": null,
+                "cover_url": "www.baidu.com",
+                "status": 1,
+                "created_at": "2019-03-12 15:50:44",
+                "updated_at": "2019-03-12 16:11:10"
+            }
+        ]
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>37、1.37记录分享次数</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>记录分享次数接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/recordShareNum</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>38、1.38重置密码</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>重置密码接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/resetPassword</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">mobile</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>手机号</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">confirm_password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>确认密码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "status": 1
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>39、1.39获取安卓强更信息</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取安卓强更信息接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/androidVersion</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "id": 6,
+        "name": "11",
+        "version_name": "1.1.22",
+        "version_code": 123,
+        "channel": 0,
+        "force_update": 1,
+        "force_versions": null,
+        "url": "www.baidu.com",
+        "icon": null,
+        "description": null,
+        "size": null,
+        "type": 1,
+        "created_at": "2019-03-15 16:58:18",
+        "updated_at": null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>40、1.40获取未读消息条数</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取未读消息条数接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/getNoReadingMsgNum</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "num": 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口</p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>41、1.41获取卡券包数量</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取卡券包数量接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/getCouponNum</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "num": 0
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口 </p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>42、1.42根据频道id获取下载链接</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>根据频道id获取下载链接接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/getDownLoadLinkByChannelId</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">channel_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>频道id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {
+        "id": 1,
+        "name": "马来西亚",
+        "description": "快来看看呗，精彩大片不容错过，输入@invitation_code得五张观影券",
+        "link": "www.malaysiaking.com",
+        "created_at": "2019-03-20 20:17:59",
+        "updated_at": "2019-03-20 20:29:07"
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口 </p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>43、1.43记录uv</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>记录uv接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/recordUv</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登陆令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">channel_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>渠道id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口 </p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h1>44、1.44记录pv</h1><div style="margin-left:20px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>记录pv接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://xx.com/api/movie/recordPv</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登陆令牌</td>
+</tr>
+<tr>
+<td style="text-align: left;">level_1</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>页面一级id</td>
+</tr>
+<tr>
+<td style="text-align: left;">level_2</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>二级id</td>
+</tr>
+<tr>
+<td style="text-align: left;">movie_id</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>影片id</td>
+</tr>
+<tr>
+<td style="text-align: left;">channel_id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>渠道id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "status": 1,
+    "message": "操作成功！",
+    "data": {}
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>
+<p>status 1成功获取数据，0获取数据失败接口 </p>
+</li>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div></body></html>

@@ -1,0 +1,12 @@
+**/nbaction*
+**/target
+**/mvnw
+**/mvnw.cmd
+**/logs
+.idea/
+**/*.iml
+**/*.log
+web/node/*
+web/node_modules/*
+web/src/main/build/*
+web/src/main/rev/*

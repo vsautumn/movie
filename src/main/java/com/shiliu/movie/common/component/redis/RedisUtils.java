@@ -23,7 +23,6 @@ public class RedisUtils {
     private ListOperations<String, Object> listOperations;
     @Autowired
     private SetOperations<String, Object> setOperations;
-    //=============================common============================
 
     /**
      * 指定缓存失效时间

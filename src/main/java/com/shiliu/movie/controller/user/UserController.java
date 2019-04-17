@@ -1,11 +1,16 @@
 package com.shiliu.movie.controller.user;
 
+import com.shiliu.movie.bussiness.bean.base.Result;
 import com.shiliu.movie.bussiness.bean.user.LoginReq;
 import com.shiliu.movie.bussiness.bean.user.RegisterReq;
-import com.shiliu.movie.bussiness.bean.base.Result;
-import com.shiliu.movie.bussiness.validate.UserValidate;
+import com.shiliu.movie.bussiness.bean.user.SendSmsReq;
+import com.shiliu.movie.bussiness.bean.user.SmsCodeLoginReq;
+import com.shiliu.movie.bussiness.validator.ValidationResult;
+import com.shiliu.movie.bussiness.validator.ValidatorService;
 import com.shiliu.movie.common.component.security.AuthService;
 import com.shiliu.movie.common.component.sms.SMSService;
+import com.shiliu.movie.common.exception.BusinessException;
+import com.shiliu.movie.common.exception.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +31,9 @@ public class UserController {
     @Autowired
     AuthService authService;
 
+    @Autowired
+    ValidatorService validatorService;
+
     /**
      * 用户注册的方法
      *
@@ -34,18 +42,30 @@ public class UserController {
      */
     @PostMapping(value = "/register")
     public Result register(@RequestBody RegisterReq registerReq) {
-        //return userService.register(registerReq);
+        ValidationResult validationResult = validatorService.validate(registerReq);
+        if (validationResult.isHasErrors()) {
+            throw new BusinessException(ErrorCode.PARAMETER_VALIDATION_ERROR, validationResult.getErrorMsg());
+        }
         return null;
+//        return userService.register(registerReq);
     }
 
     @PostMapping(value = "/login")
     public Result login(@RequestBody LoginReq loginReq) {
+        ValidationResult validationResult = validatorService.validate(loginReq);
+        if (validationResult.isHasErrors()) {
+            throw new BusinessException(ErrorCode.PARAMETER_VALIDATION_ERROR, validationResult.getErrorMsg());
+        }
         return null;
         //return userService.login(loginReq);
     }
 
     @PostMapping(value = "/smsCodeLogin")
-    public Result smsCodeLogin(@RequestBody LoginReq loginReq) {
+    public Result smsCodeLogin(@RequestBody SmsCodeLoginReq smsCodeLoginReq) {
+        ValidationResult validationResult = validatorService.validate(smsCodeLoginReq);
+        if (validationResult.isHasErrors()) {
+            throw new BusinessException(ErrorCode.PARAMETER_VALIDATION_ERROR, validationResult.getErrorMsg());
+        }
         //return userService.smsCodeLogin(loginReq);
         return null;
     }
@@ -53,17 +73,19 @@ public class UserController {
     /**
      * 发送短信验证码
      *
-     * @param loginReq [参数]
+     * @param sendSmsReq [参数]
      * @return Result [用户信息列表信息]
      * @author chenwen
      * @Time 2019/04/17
      */
     @PostMapping(value = "/send")
-    public Result sendSMS(@RequestBody LoginReq loginReq) {
-        // 参数校验
-        UserValidate.validateSendValidCodeParam(loginReq);
+    public Result sendSMS(@RequestBody SendSmsReq sendSmsReq) {
+        ValidationResult validationResult = validatorService.validate(sendSmsReq);
+        if (validationResult.isHasErrors()) {
+            throw new BusinessException(ErrorCode.PARAMETER_VALIDATION_ERROR, validationResult.getErrorMsg());
+        }
         // 发送验证码
-        smsService.sendValidCode(loginReq.getMobile());
+        smsService.sendValidCode(sendSmsReq.getMobile());
         return Result.buildSuccess();
     }
 

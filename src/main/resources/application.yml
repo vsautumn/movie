@@ -48,7 +48,7 @@ pagehelper:
     helperDialect: mysql
 mapper:
     mappers:
-    - com.shiliu.movie.TKMapper
+    - com.shiliu.movie.bussiness.mapper.base.TKMapper
     not-empty: false
     identity: mysql
     use-simple-type: true

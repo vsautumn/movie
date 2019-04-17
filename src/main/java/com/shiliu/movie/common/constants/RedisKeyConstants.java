@@ -20,9 +20,4 @@ public class RedisKeyConstants {
      * 今日此手机发送短信验证码的次数KEY
      */
     public static final String SMS_SEND_KEY = "movie:validCode:";
-
-    /**
-     * 今日此手机发送短信验证码的次数KEY
-     */
-    public static final Long SMS_SED_KEY_TTL = 5 * 60 * 1000l;
 }

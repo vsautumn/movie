@@ -124,6 +124,12 @@
             <artifactId>commons-codec</artifactId>
             <version>1.11</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/com.alibaba -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.30</version>
+        </dependency>
     </dependencies>
     <build>
         <resources>

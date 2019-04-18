@@ -15,7 +15,7 @@ public class RegisterReq {
     @NotBlank(message = ParamsErrMsgConstants.PASSWORD_NULL)
     private String password;
 
-    @NotBlank(message = ParamsErrMsgConstants.PASSWORD_AGAIN_SAME)
+    @NotBlank(message = ParamsErrMsgConstants.PASSWORD_NULL)
     private String confirm_password;
 
     @NotBlank(message = ParamsErrMsgConstants.SMS_CODE_NULL)

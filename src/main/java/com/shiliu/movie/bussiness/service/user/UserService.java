@@ -10,6 +10,8 @@ import com.shiliu.movie.bussiness.model.user.UserToken;
 import com.shiliu.movie.bussiness.mapper.user.UserMapper;
 import com.shiliu.movie.bussiness.model.user.RoleType;
 import com.shiliu.movie.bussiness.model.user.User;
+import com.shiliu.movie.common.exception.BusinessException;
+import com.shiliu.movie.common.exception.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class UserService {
+
     @Autowired
     UserMapper userMapper;
 
@@ -34,28 +37,32 @@ public class UserService {
     @Autowired
     SMSService smsService;
 
+    /**
+     * 用户注册
+     * @param registerReq
+     * @return
+     */
     public Result register(RegisterReq registerReq) {
-//        if (!smsService.validSmsCode(registerReq.getMobile(), registerReq.getSms_code())) {
-//            return Result.buildFailure("短信验证码不正确");
-//        }
+        if (!smsService.validSmsCode(registerReq.getMobile(), registerReq.getSms_code())) {
+            throw new BusinessException(ErrorCode.VALID_CODE_INVALID, ErrorCode.VALID_CODE_INVALID.getMessage());
+        }
 
         User user = new User();
         BeanUtils.copyProperties(registerReq, user);
-//        if (queryUserCountByMobile(user.getMobile()) > 0) {
-//            return Result.buildFailure("该手机号已注册");
-//        }
+        if (queryUserCountByMobile(user.getMobile()) > 0) {
+            throw new BusinessException(ErrorCode.PHONE_REGISTERED, ErrorCode.PHONE_REGISTERED.getMessage());
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(RoleType.normal.getCode());
-        user.setName("小慕" + System.currentTimeMillis() / 1000);
+        user.setName(registerReq.getMobile());
         int count = userMapper.insertSelective(user);
-//        if (count == 0) {
-//            return Result.buildFailure("注册异常");
-//        }
+        if (count == 0) {
+            throw new BusinessException(ErrorCode.PHONE_REGISTER_FAILED, ErrorCode.PHONE_REGISTER_FAILED.getMessage());
+        }
         UserToken userToken = buildUserToken(user);
         String token = userTokenService.createUserToken(userToken);
         userToken.setToken(token);
-        //return Result.build(ErrorCode.success, userToken);
-        return null;
+        return Result.buildSuccess(userToken);
     }
 
     public Result login(LoginReq loginReq) {

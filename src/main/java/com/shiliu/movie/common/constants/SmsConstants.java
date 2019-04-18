@@ -5,5 +5,5 @@ package com.shiliu.movie.common.constants;
  */
 public class SmsConstants {
 
-    public static final String CONTENTBODY = "【石榴影视】验证码：%s，您正在进行身份验证，请勿泄露给他人！（15分钟内有效）";
+    public static final String CONTENT_SIGN = "【石榴影视】";
 }

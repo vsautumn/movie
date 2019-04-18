@@ -6,6 +6,6 @@ public interface ParamsErrMsgConstants {
     String PHONE_FORMAT_INPUT = "手机号码格式不正确";
 
     String PASSWORD_NULL = "密码不能为空";
-    String PASSWORD_AGAIN_SAME = "二次密码不能为空";
+    String PASSWORD_AGAIN_SAME = "两次输入密码不一致";
     String SMS_CODE_NULL = "短信验证码不能为空";
 }

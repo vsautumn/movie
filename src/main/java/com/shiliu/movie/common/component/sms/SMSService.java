@@ -22,12 +22,14 @@ import java.util.Map;
 @Service
 public class SMSService {
 
-    @Value("${smsplat.smsurl}")
+    //@Value("${smsplat.url}")
     private String url;
-    @Value("${smsplat.sk}")
-    private String sk;
-    @Value("${smsplat.ak}")
-    private String ak;
+    //@Value("${smsplat.accesskey}")
+    private String accesskey;
+    //@Value("${smsplat.secret}")
+    private String secret;
+    //@Value("${smsplat.templateId}")
+    private String templateId;
 
     @Autowired
     CaptchaRedisUtils captchaRedisUtils;
@@ -39,7 +41,6 @@ public class SMSService {
      * 发送短信验证码
      *
      * @param mobile [参数]
-     * @author chenwen
      * @Time 2019/04/17
      */
     public void sendValidCode(String mobile) {
@@ -61,14 +62,32 @@ public class SMSService {
         // 3,发送验证码
         String newValidCode = createRandomCode();
         sendSMSSubmit(mobile, newValidCode);
-
+        //3.发送成功后-验证码保存至redis 15分钟过期
+        captchaRedisUtils.setSmsValidCodeValue(mobile, newValidCode, 900);
         log.info("newValidCode is {}.", newValidCode);
+
         // 设置每小时验证码发送记录
         Long time = System.currentTimeMillis();
         captchaRedisUtils.setSixtySendMsgTimesValue(mobile, time.toString(), 60);//设置60秒的key
 
         //设置当天的计数+1
         captchaRedisUtils.incrTodaySendMsgTimesValueAndExpire(mobile, 86400);
+    }
+
+    /**
+     * 校验手机验证码
+     *
+     * @param mobile
+     * @param smsCode
+     */
+    public boolean validSmsCode(String mobile, String smsCode) {
+        // 从redis中获取验证码
+        String trueValidCode = captchaRedisUtils.getSmsValidCodeValue(mobile);
+        //1.判断验证码是否正确
+        if (!smsCode.equals(trueValidCode)) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -87,23 +106,22 @@ public class SMSService {
     /**
      * 验证类通知类短信接口
      */
-    public Map<String, Object> sendSMSSubmit(String phoneNum, String verifyCode) {
-        long expireTime = System.currentTimeMillis() / 1000 + 10 * 60;
-        Long expireTimeLong = new Long(expireTime);
+    public Map<String, Object> sendSMSSubmit(String mobile, String verifyCode) {
 
-        String body = null;
         String result = null;
         Map<String, Object> rem = null;
         try {
             Map<String, Object> mapJson = new HashMap<String, Object>();
-            log.info("SendSMSService.sendSMSSubmit:  phone is {}, verifyCode is {}", phoneNum, verifyCode);
-            body = String.format(SmsConstants.CONTENTBODY, verifyCode);
-            mapJson.put("phoneNo", phoneNum);
-            mapJson.put("body", body);
-            mapJson.put("verifyCode", verifyCode);
+            log.info("SMSService.sendSMSSubmit:  phone is {}, verifyCode is {}", mobile, verifyCode);
+            mapJson.put("accesskey", accesskey);
+            mapJson.put("secret", secret);
+            mapJson.put("templateId", templateId);
+            mapJson.put("sign", SmsConstants.CONTENT_SIGN);
+            mapJson.put("mobile", mobile);
+            mapJson.put("content", verifyCode);
             String jsons = JSON.toJSONString(mapJson);
             result = SendSMS.sendPost2(url, jsons);
-            log.info("SendSMSService.sendSMSSubmit: phone is {}, verifyCode is {}, result is {}, productLine is csgj", phoneNum, verifyCode, result);
+            log.info("SMSService.sendSMSSubmit: phone is {}, verifyCode is {}, result is {}", mobile, verifyCode, result);
 
             rem = (Map<String, Object>) JSONObject.parse(result);
         } catch (Exception e) {

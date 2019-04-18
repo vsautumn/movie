@@ -17,7 +17,7 @@ public class RedisKeyConstants {
     public static final String TIMES_OF_TODAT_SMS_SEND_KEY = "movie:validCode:dayCount:";
 
     /**
-     * 今日此手机发送短信验证码的次数KEY
+     * 今日此手机发送短信验证码的KEY
      */
     public static final String SMS_SEND_KEY = "movie:validCode:";
 }

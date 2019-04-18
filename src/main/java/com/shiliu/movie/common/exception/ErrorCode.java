@@ -6,6 +6,7 @@ public enum ErrorCode implements ICommonError {
     SYSTEM_ERROR(0, "系统正忙，请稍后重试！"),
     PARAMETER_VALIDATION_ERROR(0, "参数不合法"),
     PHONE_REGISTERED(0, "手机号已注册"),
+    PHONE_REGISTER_FAILED(0, "注册失败"),
     PASSWORD_NOT_SAME(0, "两次输入的密码不一致"),
     OPERATION_FREQUENCY(0, "频繁操作，请稍后重试"),
     SEND_VALID_CODE_FAILED(0, "验证码发送失败，请您稍后再试"),

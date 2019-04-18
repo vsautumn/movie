@@ -25,7 +25,7 @@ public class CaptchaRedisUtils {
     }
 
     /**
-     * 【3】校验手机验证码是否已经在redis中存在
+     * 【1】校验手机验证码是否已经在redis中存在
      */
     public Boolean isValidSmsCodeExist(String mobile) {
         String validCodeKey = getSixtySendMsgTimesKey(mobile);
@@ -96,5 +96,43 @@ public class CaptchaRedisUtils {
             return null;
         }
     }
+
+    //【6】手机验证码缓存key
+    private String getSmsValidCodeKey(String phone) {
+        return RedisKeyConstants.SMS_SEND_KEY + phone;
+    }
+    /**
+     * 【6】查询手机验证码缓存value
+     */
+    public String getSmsValidCodeValue(String phone) {
+        try {
+            return redisUtils.get(getSmsValidCodeKey(phone));
+        } catch (Exception e) {
+            LOGGER.error("getSmsValidCodeValue-查询redis缓存失败");
+            return null;
+        }
+    }
+
+    /**
+     * 【6】设置手机验证码缓存value
+     */
+    public void setSmsValidCodeValue(String phone, String value, Integer seconds) {
+        try {
+            redisUtils.set(getSmsValidCodeKey(phone), value, seconds);
+        } catch (Exception e) {
+            LOGGER.error("setSmsValidCodeValue-设置redis缓存失败");
+        }
+    }
+    /**
+     * 【6】删除手机验证码缓存value
+     */
+    public void delSmsValidCodeValue(String phone) {
+        try {
+            redisUtils.del(getSmsValidCodeKey(phone));
+        } catch (Exception e) {
+            LOGGER.error("delSmsValidCodeValue-删除redis缓存失败");
+        }
+    }
+
 
 }

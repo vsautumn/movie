@@ -5,6 +5,7 @@ import com.shiliu.movie.bussiness.bean.user.LoginReq;
 import com.shiliu.movie.bussiness.bean.user.RegisterReq;
 import com.shiliu.movie.bussiness.bean.user.SendSmsReq;
 import com.shiliu.movie.bussiness.bean.user.SmsCodeLoginReq;
+import com.shiliu.movie.bussiness.service.user.UserService;
 import com.shiliu.movie.bussiness.validator.ValidationResult;
 import com.shiliu.movie.bussiness.validator.ValidatorService;
 import com.shiliu.movie.common.component.security.AuthService;
@@ -22,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/movie")
 public class UserController {
-//    @Autowired
-//    UserService userService;
+    @Autowired
+    UserService userService;
 
     @Autowired
     SMSService smsService;
@@ -46,8 +47,13 @@ public class UserController {
         if (validationResult.isHasErrors()) {
             throw new BusinessException(ErrorCode.PARAMETER_VALIDATION_ERROR, validationResult.getErrorMsg());
         }
-        return null;
-//        return userService.register(registerReq);
+        // 两次密码输入不一致单独验证
+        if (!registerReq.getPassword().equals(registerReq.getConfirm_password()))
+        {
+            throw new BusinessException(ErrorCode.PASSWORD_NOT_SAME, ErrorCode.PASSWORD_NOT_SAME.getMessage());
+        }
+
+        return userService.register(registerReq);
     }
 
     @PostMapping(value = "/login")
@@ -75,7 +81,6 @@ public class UserController {
      *
      * @param sendSmsReq [参数]
      * @return Result [用户信息列表信息]
-     * @author chenwen
      * @Time 2019/04/17
      */
     @PostMapping(value = "/send")
